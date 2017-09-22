@@ -1,0 +1,27 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %title ToDoThis
+    = csrf_meta_tags
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+  %body
+    %nav.navbar.navbar-dark.bg-dark
+      %button.navbar-toggler.navbar-toggler-right{"aria-controls" => "navbarNav", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#navbarNav", "data-toggle" => "collapse", :type => "button"}
+        %span.navbar-toggler-icon
+      = link_to 'ToDoThis', root_path, class: 'navbar-brand'
+      #navbarNav.collapse.navbar-collapse
+        %ul.navbar-nav
+          %li.nav-item.active= link_to 'Lists', root_path, class: 'nav-link'
+          %li.nav-item= link_to 'Progress', root_path, class: 'nav-link'
+          %li.nav-item= link_to 'New List', root_path, class: 'nav-link'
+
+    - if notice.present?
+      = notice
+
+    - if alert.present?
+      = alert
+
+    .container
+      = yield

@@ -1,0 +1,5 @@
+= simple_form_for @list do |f|
+  = f.input :name_string
+  = f.simple_fields_for :tasks do |t|
+    = t.input :task_string
+  = f.submit

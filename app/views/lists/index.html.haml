@@ -1,0 +1,12 @@
+- @lists.each do |list|
+  .card
+    .card-body
+      %h4.card-title= list.name_string
+      %card-text
+        %ul
+          - @tasks.each do |task|
+            %li
+              = task.task_string
+              = check_box_tag "completed", 1, !!(task.completed)
+
+= link_to 'New List', new_list_path
