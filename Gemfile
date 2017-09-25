@@ -38,6 +38,7 @@ gem 'bootstrap', '~> 4.0.0.alpha3'
 gem 'autoprefixer-rails'
 gem 'active_model_serializers', '~> 0.10.0'
 gem 'cocoon'
+gem 'devise'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

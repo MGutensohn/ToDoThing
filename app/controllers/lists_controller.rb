@@ -1,5 +1,5 @@
 class ListsController < ApplicationController
-
+  before_action :authenticate_user!
   before_action :set_list, only: [ :edit, :update, :destroy]
   def index
     @lists = List.all
@@ -9,6 +9,9 @@ class ListsController < ApplicationController
   def new
     @list = List.new
     @list.tasks.build
+  end
+
+  def edit
   end
 
   def create
@@ -21,6 +24,14 @@ class ListsController < ApplicationController
   end
 
   def complete
+  end
+
+  def update
+    if @list.update_attributes(list_params)
+      redirect_to lists_path, notice: "List updated!"
+    else
+      render :edits
+    end
   end
 
   def destroy

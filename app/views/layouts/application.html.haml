@@ -17,11 +17,12 @@
           %li.nav-item= link_to 'Progress', root_path, class: 'nav-link'
           %li.nav-item= link_to 'New List', root_path, class: 'nav-link'
 
-    - if notice.present?
-      = notice
 
-    - if alert.present?
-      = alert
 
     .container
+      - if notice.present?
+        = notice
+
+      - if alert.present?
+        = alert
       = yield
