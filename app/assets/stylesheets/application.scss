@@ -10,6 +10,18 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
+ *= require custom
  */
 
  @import "bootstrap";
+
+ .completed{
+   background-color: #cac6c6;
+   color: #5d5c5c;
+ }
+ .card-header h4{
+   float:left;
+ }
+ .card-header a{
+   float: right;
+ }

@@ -1,5 +1,9 @@
 = simple_form_for @list do |f|
-  = f.input :name_string
-  = f.simple_fields_for :tasks do |t|
-    = t.input :task_string
+  = f.label :name_string, "List Name"
+  = f.input :name_string, label: false
+  #tasks
+    = f.simple_fields_for :tasks do |t|
+      = render 'task_fields', f: t
+    .links
+      = link_to_add_association '+', f, :tasks
   = f.submit

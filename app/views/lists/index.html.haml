@@ -1,12 +1,15 @@
-- @lists.each do |list|
-  .card
-    .card-body
-      %h4.card-title= list.name_string
-      %card-text
-        %ul
-          - @tasks.each do |task|
-            %li
-              = task.task_string
-              = check_box_tag "completed", 1, !!(task.completed)
+.card-deck
+  - @lists.each do |list|
+    .card
+      .card-header
+        %h4= list.name_string
+        = link_to raw('&#x232B;'), list, method: :delete, data: { confirm: 'Are you sure you want to delete this list?' }
 
+      .card-block
+        %card-text
+          %ul.list-group.list-group-flush
+            - @tasks.where(list_id: list.id).each do |task|
+              %li.list-group-item{class: ( "completed" if task.completed?)}
+                = task.task_string
+                = link_to raw('&#x2714;'), update_task_url(task)
 = link_to 'New List', new_list_path
