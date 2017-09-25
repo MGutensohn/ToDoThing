@@ -2,7 +2,7 @@ class ListsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_list, only: [ :edit, :update, :destroy]
   def index
-    @lists = List.all
+    @lists = List.where(user_id: current_user.id)
     @tasks = Task.all
   end
 
@@ -16,6 +16,7 @@ class ListsController < ApplicationController
 
   def create
     @list = List.new(list_params)
+    @list.user_id = current_user.id
     if @list.save
       redirect_to lists_path, notice: 'list was created successfully!'
     else
@@ -45,6 +46,6 @@ class ListsController < ApplicationController
     @list = List.find(params[:id])
   end
   def list_params
-    params.require(:list).permit(:name_string, tasks_attributes: [:id, :list_id, :task_string, :_destroy])
+    params.require(:list).permit(:name_string, :user_id, tasks_attributes: [:id, :list_id, :task_string, :_destroy])
   end
 end
